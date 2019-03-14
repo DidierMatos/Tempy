@@ -1,5 +1,9 @@
 package com.ndevelopers.stormy;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         double longitude = -122.4233;
 
         String forecastURL = "https://api.darksky.net/forecast/" + apiKey + "/" + lattitude + "," + longitude;
+
+        if(isNetworkAvailable()){
+            
+        }
 
         OkHttpClient client = new OkHttpClient();
 
@@ -66,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
     }
 
     private void alertUserAboutError() {
