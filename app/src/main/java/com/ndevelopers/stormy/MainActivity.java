@@ -46,8 +46,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     //Response response = call.execute(); // metodo sincrono
+
+                    Log.v(TAG,response.body().string());
+
                     if (response.isSuccessful()){
-                        Log.v(TAG,response.body().string());
+
+                    }
+                    else{
+                        alertUserAboutError();
                     }
                 } catch (IOException e) {
                     Log.e(TAG, "IO Exception Caught: ", e);
@@ -59,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    private void alertUserAboutError() {
 
     }
 }
