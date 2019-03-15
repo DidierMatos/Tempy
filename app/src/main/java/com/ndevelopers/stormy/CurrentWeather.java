@@ -6,6 +6,7 @@ public class CurrentWeather {
     private String icon;
     private long time;
     private double temperature;
+    private double humidity;
     private double precipChance;
     private String summary;
 
@@ -39,6 +40,14 @@ public class CurrentWeather {
 
     public void setTemperature(double temperature) {
         this.temperature = temperature;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(double humidity) {
+        this.humidity = humidity;
     }
 
     public double getPrecipChance() {

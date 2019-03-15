@@ -41,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
         if (isNetworkAvailable()) {
 
 
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient(); //instanciando okhttp
 
             Request request = new Request.Builder()
                     .url(forecastURL)
-                    .build();
+                    .build(); //  realizando una peticion por medio de la url
 
-            Call call = client.newCall(request);
+            Call call = client.newCall(request); //preparando la llamada de la peticion
 
-            call.enqueue(new Callback() {
+            call.enqueue(new Callback() { //callback que permite saber la respuesta a la llamada y el fallo
                 @Override
                 public void onFailure(Call call, IOException e) {
 
@@ -59,31 +59,45 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
                         //Response response = call.execute(); // metodo sincrono
-                        String jsonData = response.body().string();
-                        Log.v(TAG, jsonData );
+                        String jsonData = response.body().string(); // JSON que se encuentra en la URL
+                        Log.v(TAG, jsonData);
 
                         if (response.isSuccessful()) {
 
                             currentWeather = getCurrentDetails(jsonData);
 
                         } else {
-                            alertUserAboutError();
+                            alertUserAboutError(); // metodo de alerta
                         }
-                    } catch (IOException e) {
+                    } catch (IOException e) { // Obtiene el error del response
                         Log.e(TAG, "IO Exception Caught: ", e);
-                    } catch (JSONException e){
+                    } catch (JSONException e){ //Obtiene el error del JSON EXCEPTION
                         Log.e(TAG, "JSONException caught", e);
                     }
                 }
 
                 private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
 
-                    JSONObject forecast = new JSONObject(jsonData);
+                    JSONObject forecast = new JSONObject(jsonData); //objeto JSON
 
-                    String timezone = forecast.getString("timezone");
+                    String timezone = forecast.getString("timezone"); // obtiene la propiedad el objeto JSON
                     Log.i(TAG,"JSON" + timezone);
 
-                    return null;
+                    JSONObject currently = forecast.getJSONObject("currently"); //objeto dentro de un objeto
+                    //Log.i(TAG, "quepedotasdaes" + currently);
+
+                    CurrentWeather currentWeather = new CurrentWeather();
+
+                    currentWeather.setHumidity(currently.getDouble("humidity"));
+                    currentWeather.setTime(currently.getLong("time"));
+                    currentWeather.setIcon(currently.getString("icon"));
+                    currentWeather.setLocationLabel("Alcatraz Island, CA");
+                    currentWeather.setPrecipChance(currently.getDouble("precipProbability"));
+                    currentWeather.setSummary(currently.getString("summary"));
+                    currentWeather.setTemperature(currently.getDouble("temperature"));
+
+
+                    return currentWeather;
 
                     /*try {
                         JSONObject forecast = new JSONObject(jsonData);
