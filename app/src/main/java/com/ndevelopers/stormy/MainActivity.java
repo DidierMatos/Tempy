@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -75,7 +76,11 @@ public class MainActivity extends AppCompatActivity {
 
                 private CurrentWeather getCurrentDetails(String jsonData) {
 
-                    JSONObject forecast = new JSONObject(jsonData);
+                    try {
+                        JSONObject forecast = new JSONObject(jsonData);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
