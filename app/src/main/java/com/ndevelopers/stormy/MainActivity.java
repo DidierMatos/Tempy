@@ -33,42 +33,41 @@ public class MainActivity extends AppCompatActivity {
 
         String forecastURL = "https://api.darksky.net/forecast/" + apiKey + "/" + lattitude + "," + longitude;
 
-        if(isNetworkAvailable()){
-            
-        }
+        if (isNetworkAvailable()) {
 
-        OkHttpClient client = new OkHttpClient();
 
-        Request request = new Request.Builder()
-                .url(forecastURL)
-                .build();
+            OkHttpClient client = new OkHttpClient();
 
-        Call call = client.newCall(request);
+            Request request = new Request.Builder()
+                    .url(forecastURL)
+                    .build();
 
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
+            Call call = client.newCall(request);
 
-            }
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    //Response response = call.execute(); // metodo sincrono
-
-                    Log.v(TAG,response.body().string());
-
-                    if (response.isSuccessful()){
-
-                    }
-                    else{
-                        alertUserAboutError();
-                    }
-                } catch (IOException e) {
-                    Log.e(TAG, "IO Exception Caught: ", e);
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        //Response response = call.execute(); // metodo sincrono
+
+                        Log.v(TAG, response.body().string());
+
+                        if (response.isSuccessful()) {
+
+                        } else {
+                            alertUserAboutError();
+                        }
+                    } catch (IOException e) {
+                        Log.e(TAG, "IO Exception Caught: ", e);
+                    }
+                }
+            });
+        }
 
         Log.d(TAG, "Main UI code is running, hurra!");
 
