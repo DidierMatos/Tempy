@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -20,6 +22,8 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    private CurrentWeather currentWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
                         //Response response = call.execute(); // metodo sincrono
-
-                        Log.v(TAG, response.body().string());
+                        String jsonData = response.body().string();
+                        Log.v(TAG, jsonData );
 
                         if (response.isSuccessful()) {
+
+                            currentWeather = getCurrentDetails(jsonData);
 
                         } else {
                             alertUserAboutError();
@@ -65,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.e(TAG, "IO Exception Caught: ", e);
                     }
+                }
+
+                private CurrentWeather getCurrentDetails(String jsonData) {
+
+                    JSONObject forecast = new JSONObject(jsonData);
+
                 }
             });
         }
