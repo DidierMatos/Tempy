@@ -1,5 +1,9 @@
 package com.ndevelopers.stormy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class CurrentWeather {
 
     private String locationLabel;
@@ -9,6 +13,8 @@ public class CurrentWeather {
     private double humidity;
     private double precipChance;
     private String summary;
+    private String timeZone;
+
 
     public String getLocationLabel() {
         return locationLabel;
@@ -28,6 +34,15 @@ public class CurrentWeather {
 
     public long getTime() {
         return time;
+    }
+
+    public String getFormattedTime(){
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+
+        formatter.setTimeZone(TimeZone.getTimeZone(timeZone));
+
+        Date dateTime = new Date(time*1000);
+        return formatter.format(dateTime);
     }
 
     public void setTime(long time) {
@@ -64,5 +79,13 @@ public class CurrentWeather {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        timeZone = timeZone;
     }
 }
