@@ -7,6 +7,7 @@ import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         String apiKey = "683c6948e70da33639b4750934accc0d";
 
-        double lattitude = 9999; //37.8267;
+        double lattitude = 37.8267;
         double longitude = -122.4233;
 
         String forecastURL = "https://api.darksky.net/forecast/" + apiKey + "/" + lattitude + "," + longitude;
@@ -79,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+
+        boolean isAvailable = false;
+
+        if(networkInfo != null && networkInfo.isConnected()){
+            isAvailable = true;
+
+        }else{
+            Toast.makeText(this, getString(R.string.network_unavailable_message), Toast.LENGTH_SHORT).show();
+        }
+
+        return isAvailable;
     }
 
     private void alertUserAboutError() {
