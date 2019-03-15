@@ -78,11 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
                 private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
 
-                    try {
+                    JSONObject forecast = new JSONObject(jsonData);
+
+                    String timezone = forecast.getString("timezone");
+                    Log.i(TAG,"JSON" + timezone);
+
+                    return null;
+
+                    /*try {
                         JSONObject forecast = new JSONObject(jsonData);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }
+                    }*/
 
                 }
             });
