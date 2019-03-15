@@ -71,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "IO Exception Caught: ", e);
+                    } catch (JSONException e){
+                        Log.e(TAG, "JSONException caught", e);
                     }
                 }
 
-                private CurrentWeather getCurrentDetails(String jsonData) {
+                private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
 
                     try {
                         JSONObject forecast = new JSONObject(jsonData);
