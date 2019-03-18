@@ -1,4 +1,4 @@
-package com.ndevelopers.stormy;
+package com.ndevelopers.tempy;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.ndevelopers.stormy", appContext.getPackageName());
+        assertEquals("com.ndevelopers.tempy", appContext.getPackageName());
     }
 }

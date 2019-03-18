@@ -1,22 +1,20 @@
-package com.ndevelopers.stormy;
+package com.ndevelopers.tempy;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ndevelopers.stormy.databinding.ActivityMainBinding;
+import com.ndevelopers.tempy.databinding.ActivityMainBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;

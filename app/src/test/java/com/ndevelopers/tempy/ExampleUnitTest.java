@@ -1,4 +1,4 @@
-package com.ndevelopers.stormy;
+package com.ndevelopers.tempy;
 
 import org.junit.Test;
 
