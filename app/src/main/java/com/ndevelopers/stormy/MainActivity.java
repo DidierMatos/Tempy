@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.TextureView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,12 +33,22 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     private CurrentWeather currentWeather;
-
     private ImageView iconImageView;
+
+    final double latitude = 37.8267;
+    final double longitude = 122.4233;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getForecast(latitude, longitude);
+
+        Log.d(TAG, "Main UI code is running, hurra!");
+
+    }
+
+    private void getForecast(double latitude, double longitude) {
         final ActivityMainBinding binding = DataBindingUtil.setContentView(MainActivity.this,
                 R.layout.activity_main);
 
@@ -49,11 +60,7 @@ public class MainActivity extends AppCompatActivity {
         iconImageView = findViewById(R.id.iconImageView);
 
         String apiKey = "683c6948e70da33639b4750934accc0d";
-
-        double lattitude = 37.8267;
-        double longitude = -122.4233;
-
-        String forecastURL = "https://api.darksky.net/forecast/" + apiKey + "/" + lattitude + "," + longitude;
+        String forecastURL = "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude;
 
         if (isNetworkAvailable()) {
 
@@ -119,9 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-        Log.d(TAG, "Main UI code is running, hurra!");
-
     }
 
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
@@ -180,4 +184,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getFragmentManager(), "error_dialog");
 
     }
+
+
+
 }
