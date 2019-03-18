@@ -181,5 +181,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/refresh"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="65dp" />
+
 </android.support.constraint.ConstraintLayout>
 </layout>
