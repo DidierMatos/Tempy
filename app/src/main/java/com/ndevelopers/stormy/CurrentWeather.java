@@ -126,6 +126,6 @@ public class CurrentWeather {
     }
 
     public void setTimeZone(String timeZone) {
-        timeZone = timeZone;
+        this.timeZone = timeZone;
     }
 }

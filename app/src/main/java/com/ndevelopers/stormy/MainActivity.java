@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView darkSky = findViewById(R.id.darkSkyAttribution);
+        TextView dark = findViewById(R.id.darkSkyAttribution);
 
         darkSky.setMovementMethod(LinkMovementMethod.getInstance()); //hace funcionar el enlace
 
