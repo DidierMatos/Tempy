@@ -185,13 +185,14 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:onClick="refreshOnClick"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/locationValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/refresh"
-        tools:layout_editor_absoluteY="65dp" />
+        app:srcCompat="@drawable/refresh" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>
