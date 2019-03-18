@@ -117,47 +117,44 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "JSONException caught", e);
                     }
                 }
+            });
+        }
 
-                private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
+        Log.d(TAG, "Main UI code is running, hurra!");
 
-                    JSONObject forecast = new JSONObject(jsonData); //objeto JSON
+    }
 
-                    String timezone = forecast.getString("timezone"); // obtiene la propiedad el objeto JSON
-                    Log.i(TAG,"JSON" + timezone);
+    private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
 
-                    JSONObject currently = forecast.getJSONObject("currently"); //objeto dentro de un objeto
-                    //Log.i(TAG, "quepedotasdaes" + currently);
+        JSONObject forecast = new JSONObject(jsonData); //objeto JSON
 
-                    CurrentWeather currentWeather = new CurrentWeather();
+        String timezone = forecast.getString("timezone"); // obtiene la propiedad el objeto JSON
+        Log.i(TAG,"JSON" + timezone);
 
-                    currentWeather.setHumidity(currently.getDouble("humidity"));
-                    currentWeather.setTime(currently.getLong("time"));
-                    currentWeather.setIcon(currently.getString("icon"));
-                    currentWeather.setLocationLabel("Alcatraz Island, CA");
-                    currentWeather.setPrecipChance(currently.getDouble("precipProbability"));
-                    currentWeather.setSummary(currently.getString("summary"));
-                    currentWeather.setTemperature(currently.getDouble("temperature"));
+        JSONObject currently = forecast.getJSONObject("currently"); //objeto dentro de un objeto
+        //Log.i(TAG, "quepedotasdaes" + currently);
 
-                    currentWeather.setTimeZone(timezone);
+        CurrentWeather currentWeather = new CurrentWeather();
 
-                    Log.d(TAG, currentWeather.getFormattedTime());
+        currentWeather.setHumidity(currently.getDouble("humidity"));
+        currentWeather.setTime(currently.getLong("time"));
+        currentWeather.setIcon(currently.getString("icon"));
+        currentWeather.setLocationLabel("Alcatraz Island, CA");
+        currentWeather.setPrecipChance(currently.getDouble("precipProbability"));
+        currentWeather.setSummary(currently.getString("summary"));
+        currentWeather.setTemperature(currently.getDouble("temperature"));
 
-                    return currentWeather;
+        currentWeather.setTimeZone(timezone);
+
+        Log.d(TAG, currentWeather.getFormattedTime());
+
+        return currentWeather;
 
                     /*try {
                         JSONObject forecast = new JSONObject(jsonData);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }*/
-
-                }
-            });
-        }
-
-        Log.d(TAG, "Main UI code is running, hurra!");
-
-
-
 
     }
 
